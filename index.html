@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick y Morty SFC</title>
+</head>
+<body>
+
+    <div id="app">  
+        <name-image-component class="image" :id="character.id" v-for="character in characters" :name_image="character.name"
+        :src_image="character.src"></name-image-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</body>
+</html>
+
+    <script>
+        Vue.component(`name-image-component`,{
+            props:{
+                name_image:{
+                    type:String,
+                    required:true,
+                },
+                id:{
+                    type:Number,
+                    required:true,
+                },
+                src_image:{
+                    type:String,
+                    required:true,
+                }
+            },
+            template:   `<div class="card">
+                            <img :src="src_image">
+                            <h1>{{name_image}}</h1>
+                        </div>`
+        })
+
+        const app = new Vue({
+            el:"#app",
+            data:()=>{
+                return {
+                    characters: [
+                        {id:1, name:'Rick Sanchez', src:'https://rickandmortyapi.com/api/character/avatar/1.jpeg'},
+                        {id:2, name:'Morty Smith', src:'https://rickandmortyapi.com/api/character/avatar/2.jpeg'},
+                        {id:3, name:'Summer Smith', src:'https://rickandmortyapi.com/api/character/avatar/3.jpeg'},
+                        {id:4, name:'Beth Smith', src:'https://rickandmortyapi.com/api/character/avatar/4.jpeg'},
+                        {id:5, name:'Jerry Smith', src:'https://rickandmortyapi.com/api/character/avatar/5.jpeg'}
+                    ]
+                }
+            },
+        })
+
+    </script>
+
+    <style>
+        body {
+            background-image: url(https://rickandmortypod.com/wp-content/uploads/2018/11/cropped-RM_page-header_background1-3.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 200vh;
+            width: 90vw;
+        }
+
+        .image {
+            display: flex;
+            grid-template-columns: 1fr 1fr;
+            width: 31.25rem;
+            margin: 2.5rem;
+            align-self: center;
+        }
+
+        img {
+            width: 11.25rem;
+            border-radius: 50%;
+        }
+
+        h1 {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            margin: 1rem;
+            color: green;
+        }
+
+    </style>
+    
+  
